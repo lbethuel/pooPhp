@@ -19,9 +19,6 @@ class ContaBanco
            
 */
 
-
-
-
     public $numConta;
     private $tipo;
     private $dono;
@@ -96,7 +93,6 @@ class ContaBanco
             return;
         }
     }
-
 
     /* getters ands setters */
 

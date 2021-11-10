@@ -20,7 +20,7 @@
     <head style="text-align: center;">
         <h1 style="background-color: cornflowerblue; text-align: center;">Banco do Lucas</h1>
     </head>
-    <div style="background-color: black; color:darkgray; ">
+    <div style="background-color: black; color:darkgray;">
     <pre>
     <?php
 
@@ -31,7 +31,7 @@
     $conta1->abrirConta('cp');
     $conta1->setDono('Lucas Bethuel');
     $conta1->depositar(500);
-    $conta1->sacar(800);
+    $conta1->sacar(1000);
 
     print_r($conta1);
 
