@@ -12,39 +12,39 @@ class ControleRemoto implements Controlador
 
     /* Metodos especiais */
 
-    function __construct()
+    public function __construct()
     {
         $this->volume = 50;
         $this->ligado = false;
         $this->tocando = false;
     }
 
-    public function getVolume()
+    private function getVolume()
     {
         return $this->volume;
     }
 
-    public function getLigado()
+    private function getLigado()
     {
         return $this->ligado;
     }
 
-    public function getTocando()
+    private function getTocando()
     {
         return $this->tocando;
     }
 
-    public function setVolume($volume)
+    private function setVolume($volume)
     {
         $this->volume = $volume;
     }
 
-    public function setLigado($ligado)
+    private function setLigado($ligado)
     {
         $this->ligado = $ligado;
     }
 
-    public function setTocando($tocando)
+    private function setTocando($tocando)
     {
         $this->tocando = $tocando;
     }
@@ -64,13 +64,22 @@ class ControleRemoto implements Controlador
 
     public function abrirMenu()
     {
-        echo "Está ligado?" . ($this->getLigado())? "SIM <br>":"NÃo <br>";
-        echo "Está tocando?" . ($this->getTocando())? "SIM <br>":"NÃo <br>"; 
-        echo "Volume: " . $this->getLigado();
-        for ($i=0; $i <= $this->getVolume(); $i +=10){
-            echo "|";
+        if ($this->getLigado()) {
+
+            echo "---------------- MENU ---------------- <br><br>";
+            echo "Está ligado? ";
+            echo $this->getLigado() ? "SIM <br>" : "NÃo <br>";
+            echo "Está tocando? ";
+            echo $this->getTocando() ? "SIM <br>" : "NÃO <br>";
+            echo "Volume: ";
+            echo $this->getVolume() . " ";
+            for ($i = 0; $i <= $this->getVolume(); $i += 1) {
+                echo "|";
+            }
+            echo "<br><br> ---------------- MENU ---------------- <br><br>";
+            return;
         }
-        echo "<br>";
+        echo "<p>ligue a tv para ver o menu</p>";
     }
 
     public function fecharMenu()
@@ -80,43 +89,51 @@ class ControleRemoto implements Controlador
 
     public function maisVolume()
     {
-        if($this->getLigado()){
+        if ($this->getLigado()) {
             $this->setVolume($this->getVolume() + 5);
+            return;
         }
+        echo "<p>ligue a tv para aumentar o volume</p>";
     }
 
     public function menosVolume()
     {
-        if($this->getLigado()){
+        if ($this->getLigado()) {
             $this->setVolume($this->getVolume() - 5);
+            return;
         }
+        echo "<p>ligue a tv para abaixar o volume</p>";
     }
 
     public function ligarMudo()
     {
-        if($this->getLigado() && $this->getVolume()>0){
+        if ($this->getLigado() && $this->getVolume() > 0) {
             $this->setVolume(0);
         }
     }
 
     public function desligarMudo()
     {
-        if($this->getLigado() && $this->getVolume() == 0){
+        if ($this->getLigado() && $this->getVolume() == 0) {
             $this->setVolume(50);
         }
     }
 
     public function play()
     {
-        if($this->getLigado() && !($this->getTocando())){
+        if ($this->getLigado() && !$this->getTocando()) {
             $this->setTocando(true);
+            return;
         }
+        echo "<p>ligue a tv para dar play</p>";
     }
 
     public function pause()
     {
-        if($this->getLigado() && $this->getTocando()){
+        if ($this->getLigado() && $this->getTocando()) {
             $this->setTocando(false);
+            return;
         }
+        echo "<p>ligue a tv para dar pause</p>";
     }
 }
